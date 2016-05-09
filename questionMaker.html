@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Question Maker</title>
+        <!--<link rel="stylesheet" type="text/css" href="index.css"/>-->
+		<script type="text/javascript" src="index.js"></script> 
+    </head>
+    <body>    
+        <form action="questionMaker.php" method="POST" enctype="multipart/form-data">
+            <h1>Challenge Accepted!</h1>
+			<fieldset class="row1">
+                <legend>Question Information</legend>
+				<p>
+					Question Title (This will the code for the question, please choose one you haven't used before.)
+                    <br/><br/><input id="questionCode" name="questionCode" type="text" required="required"/>
+                </p>
+				<p><br/>Question Statement
+                   <br/><br/><input id="questionStatement" name="questionStatement" type="text" required="required"/>
+                </p>
+            </fieldset>
+            
+            
+            <fieldset class="row2">
+				<legend>Input</legend>
+				<p> 
+					<input type="button" value="Add Input Variable" onClick="addRow('inputVariableTable')" /> 
+				</p>
+               <table id="inputVariableTable">
+					<tr>
+						<td>
+							<label for="inputVariable">Variable Name</label>
+							<input id="inputVariable" name="inputVariable[]" type="text" required="required">
+						</td>
+						<td>
+							<label for="inputDataType">Variable's Data Type(Integer, Binary or String)</label>
+							<select id="inputDataType" name="inputDataType[]" required="required">
+								<option>Binary</option>
+								<option>Integer</option>
+								<option>String</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+            </fieldset>
+            
+            <fieldset class="row3">
+				<legend>Output</legend>
+				<p> 
+					<input type="button" value="Add output Variable" onClick="addRow('outputVariableTable')" /> 
+				</p>
+               <table id="outputVariableTable">
+					<tr>
+						<td>
+							<label for="outputVariable">Variable Name</label>
+							<input type="text" required="required" id="outputVariable" name="outputVariable[]">
+						</td>
+						<td>
+							<label for="outputDataType">Variable's Data Type(Integer, Binary or String)</label>
+							<select id="outputDataType" name="outputDataType[]" required="required">
+								<option>Binary</option>
+								<option>Integer</option>
+								<option>String</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+            </fieldset>
+            
+            
+            
+            <input type="file" accept=".cmp" name="testCaseFile" id="testCaseFile" required="required"/>
+            
+			<input class="submit" type="submit" value="Confirm" />
+        </form>
+	<br/><br/><button onclick="location.href = 'instructorPage.html';" id="instructorPageButton" >Back to Instructor Page</button>
+    </body>
+</html>
+
+
+
+
+
