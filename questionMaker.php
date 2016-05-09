@@ -4,7 +4,7 @@
         <title>Question Maker</title> 
           			
 		<?php 
-            include "databaseConnect.php";  
+            include 'databaseConnect.php';  
 			$uploadOk = 1;
 			if(isset($_POST)==true && empty($_POST)==false): 
 				$questionCode = $_POST['questionCode'];
@@ -29,7 +29,7 @@
 					
 				<script type="text/javascript">
 					alert('The question you made was not uploaded to the database because there is already a question in the database with the same question code. Please make sure you use a unique question code.');
-					location.href = '<?php echo db['questionMakerPage']?>' ;
+					location.href = '<?php echo $db['questionMakerPage']?>' ;
 				</script>
 			
 			
@@ -71,7 +71,7 @@
 			?>
 				<script type="text/javascript">
 					alert('The question you made was not uploaded to the database because of an unknown error.');
-					location.href = '<?php echo db['questionMakerPage']?>' ;
+					location.href = '<?php echo $db['questionMakerPage']?>' ;
 				</script>
 			<?php
 				else:

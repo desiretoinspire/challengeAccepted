@@ -6,17 +6,7 @@
 
 <body>
 <?php
-	$db = parse_ini_file('databaseDetails.ini');
-	$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
-	if ($dbConnection->connect_error): 
-		?>
-		<script type="text/javascript">
-			alert('There is an error with connecting to the database. Please contact your administrator.');
-			location.href = '<?php echo db['studentPage.html'] ?>' ;
-		</script> 					
-		<?php
-	else: 
-	endif;
+	include 'databaseConnect.php';
 	$studentID = "daemondestudent";
 	$dbQuery = "SELECT * FROM ".$db['submissionTable']." WHERE ".$db['studentIDColumn']." = '".$studentID."'";
 	$result = $dbConnection->query($dbQuery);

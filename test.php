@@ -4,5 +4,16 @@
 	$date = strtotime($date);
 	$date2 = strtotime($date2);
 	$date = $date2 - $date;
-	echo date('m-d H:i:s', $date);
+    echo date('m-d H:i:s', $date);
+<?php
+	$db = parse_ini_file('databaseDetails.ini');
+	$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
+	if ($dbConnection->connect_error): 
+?>
+<?php
+	else: 
+	endif;
+			
+?>
+
 ?>

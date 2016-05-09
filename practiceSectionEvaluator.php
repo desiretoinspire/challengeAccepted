@@ -20,20 +20,9 @@
 	else: 
 		header("Location: index.html");
 	endif;
+	include 'databaseConnect.php';
 	
-	$db = parse_ini_file('databaseDetails.ini');
-	$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
 	$hardwareSimulatorPath = $db['hardwareSimulatorPath'];
-	if ($dbConnection->connect_error): 
-		?>
-		<script type="text/javascript">
-			alert('There is an error with connecting to the database. Please contact your administrator.');
-			location.href = '<?php echo db['practiceSectionPage.html'] ?>' ;
-		</script> 					
-		<?php
-	else: 
-	endif;
-	
 	$testCaseQuery = "SELECT * FROM ".$db['testCaseTable']." WHERE ".$db['questionCodeColumn']." = '".$questionCode."'";
 	$testCaseResult = $dbConnection->query($testCaseQuery);
 	$variableDataQuery = "SELECT * FROM ".$db['questionTable']." WHERE ".$db['questionCodeColumn']." = '".$questionCode."'";

@@ -4,17 +4,8 @@
 	<title>Practice Session</title>
 </head>
 <?php
-	$db = parse_ini_file('databaseDetails.ini');
-	$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
-	if ($dbConnection->connect_error): 
-		?>
-		<script type="text/javascript">
-			alert('There is an error with connecting to the database. Please contact your administrator.');
-			location.href = '<?php echo db['studentPage.html'] ?>' ;
-		</script> 					
-		<?php
-	else: 
-	endif;
+	include 'databaseConnect.php';
+	
 	$dbQuery = "SELECT ".$db['questionCodeColumn']." FROM ".$db['questionTable'];			
 	$result = $dbConnection->query($dbQuery);
 	

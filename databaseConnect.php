@@ -1,23 +1,17 @@
 <?php
-	$db = parse_ini_file('databaseDetails.ini');
+	ini_set('display_errors', 1); error_reporting(E_ALL);
+	$db = file_get_contents('databaseDetails.ini');
+	$db = parse_ini_string($db);
 	$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
-	if ($dbConnection->connect_error): 
-?>
-		<script type="text/javascript">
-			alert('The question you made was not uploaded to the database because the connection wasn\'t established. Please make sure you are authorized to add questions to the database.');
-			location.href = '<?php echo db['questionMakerPage'] ?>' ;
-		</script> 					
-<?php
-	else: 
-	endif;
+	if ($dbConnection->connect_error):
+	?>
 			
-?>
-<head>
-	<title>untitled</title>
-</head>
-
-<body>
+		<script type="text/javascript">
+			alert('Database Connection Error.');
+			location.href = '<?php echo $db['questionMakerPage']?>' ;
+		</script>	
 	
-</body>
-
-</html>
+	<?php
+		else: 
+	endif;		
+?>

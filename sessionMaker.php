@@ -4,7 +4,7 @@
         <title>Session Maker</title> 
           			
 		<?php 
-              
+			include 'databaseConnect.php';  
 			if(isset($_POST)==true && empty($_POST)==false): 
 				$sessionCode = ($_POST['sessionCode']);
 				$questionCode = serialize($_POST['questionCode']);
@@ -12,19 +12,8 @@
 				$sessionStart = strtotime($_POST['startTime']);
 				$sessionStop = strtotime($_POST['endTime']);
 			else: 
-				header("Location: index.html");
+				header("Location: ".$db['homePage']);
 			endif;
-				$db = parse_ini_file('databaseDetails.ini');
-				$dbConnection=new mysqli($db['host'],$db['user'],$db['password'], $db['dbName']);
-			if ($dbConnection->connect_error): 
-	?>
-				<script type="text/javascript">
-					alert('The question you made was not uploaded to the database because the connection wasn\'t established. Please make sure you are authorized to add questions to the database.');
-					location.href = '<?php echo db['questionMakerPage'] ?>' ;
-				</script> 					
-			<?php
-				else: 
-				endif;
 			
 			$dbQuery = "INSERT INTO ".
 			$db['sessionTable'].
