@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+
 <html lang="en">
   <head>
     <meta name="google-signin-scope" content="profile email">
@@ -10,30 +12,6 @@
     
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
-	function post(path, params, method) {
-		method = method || "post"; // Set method to post by default if not specified.
-
-		// The rest of this code assumes you are not using a library.
-		// It can be made less wordy if you use one.
-		var form = document.createElement("form");
-		form.setAttribute("method", method);
-		form.setAttribute("action", path);
-
-		for(var key in params) {
-			if(params.hasOwnProperty(key)) {
-				var hiddenField = document.createElement("input");
-				hiddenField.setAttribute("type", "hidden");
-				hiddenField.setAttribute("name", key);
-				hiddenField.setAttribute("value", params[key]);
-
-				form.appendChild(hiddenField);
-			 }
-		}
-
-		document.body.appendChild(form);
-		form.submit();
-	}
-	
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -43,11 +21,10 @@
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-
+		
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        post('redirect.php', {userName: profile.getName(		),userEmail: profile.getEmail()});
         
       };
     </script>
@@ -61,8 +38,6 @@
 		  console.log('User signed out.');
 		});
 	 }
-	 
-	 
 	</script>
   </body>
 </html>
